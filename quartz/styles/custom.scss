@@ -27,6 +27,32 @@ table {
   overflow-x: visible !important; 
 }
 
+//////////////////////////////////////////////图片居中
+article img {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 100%;
+  height: auto;
+}
+
+article figure {
+  display: table;
+  margin: 1.5rem auto;
+}
+
+article figure img {
+  display: block;
+  margin: 0 auto;
+}
+
+article figcaption {
+  text-align: center;
+  margin-top: 0.5rem;
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+
 
 //////////////////////////////////////////////光影在下面
 body {
@@ -47,22 +73,55 @@ body {
 }
 
 // 星号分隔线
-hr {
-  overflow: visible;
-  padding: 0;
-  height: 0;
-  margin: 2em auto;
-  border: none;
-  text-align: center;
-  width: 100%;
+// hr {
+//   overflow: visible;
+//   padding: 0;
+//   height: 0;
+//   margin: 2em auto;
+//   border: none;
+//   text-align: center;
+//   width: 100%;
 
-  &:after {
-    content: "* * *";
-    display: inline-block;
-    margin: -1em 0 0.5em;
-    font-size: 1.5em;
-    padding: 0.5em 1em;
-    color: var(--gray);
+//   &:after {
+//     content: "* * *";
+//     display: inline-block;
+//     margin: -1em 0 0.5em;
+//     font-size: 1.5em;
+//     padding: 0.5em 1em;
+//     color: var(--gray);
+//   }
+// }
+hr {
+  border: 0;
+  background: transparent !important;
+  box-shadow: none;
+  height: auto;
+  min-height: 0;
+  margin: 2.2rem auto 1.6rem;
+  width: 100%;
+  text-align: center;
+  overflow: visible;
+  position: relative;
+
+  &::before {
+    content: none;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 8rem;
+    height: 2.8rem;
+    margin: 0 auto;
+    background-color: transparent;
+    background-image:
+      url("./static/rubber-duck.svg"),
+      url("./static/rubber-duck.svg"),
+      url("./static/rubber-duck.svg");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 1.9rem 1.9rem, 1.9rem 1.9rem, 1.9rem 1.9rem;
+    background-position: left center, center center, right center;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.08));
   }
 }
 
