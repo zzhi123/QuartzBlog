@@ -23,6 +23,7 @@ interface RenderComponents {
 }
 
 const headerRegex = new RegExp(/h[1-6]/)
+
 export function pageResources(
   baseDir: FullSlug | RelativeURL,
   staticResources: StaticResources,
@@ -78,6 +79,7 @@ function renderTranscludes(
       if (classNames.includes("transclude")) {
         const inner = node.children[0] as Element
         const transcludeTarget = (inner.properties["data-slug"] ?? slug) as FullSlug
+
         if (visited.has(transcludeTarget)) {
           console.warn(
             styleText(
@@ -100,6 +102,7 @@ function renderTranscludes(
           ]
           return
         }
+
         visited.add(transcludeTarget)
 
         const page = componentData.allFiles.find((f) => f.slug === transcludeTarget)
@@ -127,9 +130,15 @@ function renderTranscludes(
               {
                 type: "element",
                 tagName: "a",
-                properties: { href: inner.properties?.href, class: ["internal", "transclude-src"] },
+                properties: {
+                  href: inner.properties?.href,
+                  class: ["internal", "transclude-src"],
+                },
                 children: [
-                  { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
+                  {
+                    type: "text",
+                    value: i18n(cfg.locale).components.transcludes.linkToOriginal,
+                  },
                 ],
               },
             ]
@@ -140,6 +149,7 @@ function renderTranscludes(
           let startIdx = undefined
           let startDepth = undefined
           let endIdx = undefined
+
           for (const [i, el] of page.htmlAst.children.entries()) {
             // skip non-headers
             if (!(el.type === "element" && el.tagName.match(headerRegex))) continue
@@ -170,9 +180,15 @@ function renderTranscludes(
             {
               type: "element",
               tagName: "a",
-              properties: { href: inner.properties?.href, class: ["internal", "transclude-src"] },
+              properties: {
+                href: inner.properties?.href,
+                class: ["internal", "transclude-src"],
+              },
               children: [
-                { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
+                {
+                  type: "text",
+                  value: i18n(cfg.locale).components.transcludes.linkToOriginal,
+                },
               ],
             },
           ]
@@ -200,9 +216,15 @@ function renderTranscludes(
             {
               type: "element",
               tagName: "a",
-              properties: { href: inner.properties?.href, class: ["internal", "transclude-src"] },
+              properties: {
+                href: inner.properties?.href,
+                class: ["internal", "transclude-src"],
+              },
               children: [
-                { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
+                {
+                  type: "text",
+                  value: i18n(cfg.locale).components.transcludes.linkToOriginal,
+                },
               ],
             },
           ]
@@ -238,6 +260,7 @@ export function renderPage(
     right,
     footer: Footer,
   } = components
+
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
 
@@ -259,10 +282,12 @@ export function renderPage(
 
   const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
   const direction = i18n(cfg.locale).direction ?? "ltr"
+
   const doc = (
     <html lang={lang} dir={direction}>
       <Head {...componentData} />
       <body data-slug={slug}>
+        <DappledLight />
         <div id="quartz-root" class="page">
           <Body {...componentData}>
             {LeftComponent}
@@ -299,4 +324,55 @@ export function renderPage(
   )
 
   return "<!DOCTYPE html>\n" + render(doc)
+}
+
+function DappledLight() {
+  return (
+    <div id="dappled-light">
+      <div id="glow"></div>
+      <div id="glow-bounce"></div>
+
+      <div class="perspective">
+        <div id="leaves"></div>
+
+        <div id="blinds">
+          <div class="shutters">
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+            <div class="shutter"></div>
+          </div>
+
+          <div class="vertical">
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="progressive-blur">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  )
 }
