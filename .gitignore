@@ -1,0 +1,14 @@
+node_modules/
+.DS_Store
+public/
+.quartz-cache/
+tsconfig.tsbuildinfo
+.obsidian/
+prof/
+
+# 按需启用
+# private/
+# .replit
+# replit.nix
+# *.mov
+# node ./quartz/bootstrap-cli.mjs build --serve -d content
