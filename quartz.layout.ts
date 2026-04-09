@@ -41,6 +41,12 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Explorer({
       title: "目录",
     }),
+    Component.RecentNotes({
+      title: "最新文章",
+      limit: 5,
+      showTags: false, // 去掉标签
+      filter: (f) => f.slug !== "index", // 去掉根目录的 index.md
+    }),
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()),

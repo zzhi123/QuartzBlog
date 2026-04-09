@@ -1,7 +1,7 @@
 @use "./base.scss";
 @use "./variables.scss" as *;
 // put your custom CSS here!
-// 强制显示表格边框和背景
+////////////////////////////////////////////// 强制显示表格边框和背景
 table {
   display: table;          /* 确保它以表格模式渲染 */
   width: 100%;             /* 强制占据 100% 宽度 */
@@ -52,9 +52,44 @@ article figcaption {
   font-size: 0.95rem;
 }
 
+//////////////////////////////////////////////左侧目录标题样式统一
+/* 上半部分：只改文章名字大小，不动间距、不动样式 */
+.sidebar.left .explorer-content ul li > a {
+  font-size: 0.95rem;
+}
 
+/* 下半部分：文章名字大小和上半部分文章名字一致 */
+.sidebar.left .recent-notes .section > .desc > h3 > a {
+  font-size: 0.90rem;
+}
+/* 最新文章：标题和时间之间不要留缝 */
+.sidebar.left .recent-notes .section {
+  display: flex;
+  flex-direction: column;
+  gap: 0 !important;
+}
+/* 时间紧贴标题底部 */
+.sidebar.left .recent-notes .section > .meta {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0.76rem;
+  line-height: 1.2;
+}
+/* 最新文章：标题到第一篇文章的间距 */
+.sidebar.left .recent-notes > ul.recent-ul {
+  margin-top: 0.18rem !important;
+}
+/* 最新文章：每篇文章之间的间距 */
+.sidebar.left .recent-notes > ul.recent-ul > li {
+  margin: 0.18rem 0 !important;
+  padding: 0 !important;
+}
+/* 文章标题本身不要自带额外空白 */
+.sidebar.left .recent-notes .section > .desc > h3 {
+  margin: 0 !important;
+}
 
-//////////////////////////////////////////////光影在下面
+//////////////////////////////////////////////光影效果
 body {
   position: relative;
   min-height: 100vh;
