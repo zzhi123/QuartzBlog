@@ -40,6 +40,9 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.Explorer({
       title: "目录",
+        folderClickBehavior: "link",
+        folderDefaultState: "collapsed",
+        useSavedState: false,
     }),
     Component.RecentNotes({
       title: "最新文章",
